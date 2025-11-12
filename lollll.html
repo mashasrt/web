@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Tienda Online - Productos como en Amazon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+        }
+        header {
+            background-color: rgba(35, 47, 62, 0.8); /* Overlay semi-transparente para legibilidad */
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        header img {
+            height: 40px;
+            margin-right: 15px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        header p {
+            margin: 5px 0 0 0;
+            width: 100%;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: rgba(255, 255, 255, 0.95); /* Fondo semi-transparente para cards */
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .product-card h3 {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .product-card p {
+            color: #666;
+            font-size: 14px;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #B12704;
+        }
+        .saber-mas {
+            background-color: #007185;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .saber-mas:hover {
+            background-color: #005a6b;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+        .close:hover {
+            color: black;
+        }
+        .modal h2 {
+            margin-top: 0;
+        }
+        .modal p {
+            line-height: 1.6;
+        }
+        .whatsapp-btn {
+            background-color: #25D366; /* Verde WhatsApp */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        footer {
+            background-color: rgba(35, 47, 62, 0.8); /* Overlay para footer */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://via.placeholder.com/120x40/FF9900/FFFFFF?text=Mi+Tienda" alt="Logo Mi Tienda Online">
+        <div>
+            <h1>Mi Tienda Online</h1>
+            <p>¡Descubre los mejores productos!</p>
+        </div>
+    </header>
+
+    <div class="products-grid">
+        <!-- Producto 1: Libro -->
+        <div class="product-card">
+            <img src="https://via.placeholder.com/250x200?text=Libro+de+Ciencia" alt="Libro de Ciencia Ficción">
+            <h3>Libro de Ciencia Ficción</h3>
+            <p>Un viaje épico por el universo. Edición especial.</p>
+            <div class="price">$19.99</div>
+            <button class="saber-mas" 
+                    data-title="Libro de Ciencia Ficción: Viaje Estelar"
+                    data-desc="Este emocionante libro de ciencia ficción, escrito por el aclamado autor Alex Rivera, te transporta a un futuro donde la humanidad explora galaxias lejanas. La historia sigue a un grupo de exploradores que descubren un planeta misterioso lleno de secretos ancestrales. Con 400 páginas de acción, intriga y reflexiones filosóficas sobre el destino humano. Incluye ilustraciones exclusivas y un epílogo sorpresa. Perfecto para fans de Dune o The Expanse. ISBN: 978-1234567890. Publicado en 2024.">
+            Saber más</button>
+        </div>
+
+        <!-- Producto 2: Auriculares -->
+        <div class="product-card">
+            <img src="https://via.placeholder.com/250x200?text=Auriculares+Wireless" alt="Auriculares Inalámbricos">
+            <h3>Auriculares Wireless</h3>
+            <p>Sonido premium con cancelación de ruido.</p>
+            <div class="price">$49.99</div>
+            <button class="saber-mas" 
+                    data-title="Auriculares Wireless ProSound"
+                    data-desc="Los Auriculares Wireless ProSound ofrecen un audio cristalino con tecnología de cancelación activa de ruido (ANC) que bloquea hasta el 95% de los sonidos ambientales. Batería de hasta 30 horas de reproducción continua, carga rápida USB-C (10 min = 2 horas de uso). Compatible con Bluetooth 5.0, controles táctiles y micrófono integrado para llamadas claras. Diseño ergonómico en negro mate, resistente al sudor (IPX4). Incluye estuche de carga y almohadillas extras. Ideal para música, podcasts y trabajo remoto. Garantía de 1 año.">
+            Saber más</button>
+        </div>
+
+        <!-- Producto 3: Camiseta -->
+        <div class="product-card">
+            <img src="https://via.placeholder.com/250x200?text=Camiseta+Deportiva" alt="Camiseta Deportiva">
+            <h3>Camiseta Deportiva</h3>
+            <p>Algodón 100% cómodo y transpirable.</p>
+            <div class="price">$24.99</div>
+            <button class="saber-mas" 
+                    data-title="Camiseta Deportiva ActiveFit"
+                    data-desc="La Camiseta ActiveFit está fabricada con 100% algodón orgánico premium, ultra transpirable y de secado rápido para mantenerte fresco durante cualquier actividad. Cuello redondo sin etiquetas irritantes, costuras reforzadas y ajuste slim que se adapta a tu cuerpo. Disponible en tallas S-XXL, colores: negro, azul y gris. Perfecta para gym, running o uso diario casual. Lavable a máquina, no se decolora. Certificada OEKO-TEX para pieles sensibles. Envío gratis en pedidos superiores a $50.">
+            Saber más</button>
+        </div>
+
+        <!-- Producto 4: Teléfono -->
+        <div class="product-card">
+            <img src="https://via.placeholder.com/250x200?text=Smartphone" alt="Smartphone Android">
+            <h3>Smartphone Android</h3>
+            <p>128GB de almacenamiento, cámara de 48MP.</p>
+            <div class="price">$299.99</div>
+            <button class="saber-mas" 
+                    data-title="Smartphone Android GalaxyX"
+                    data-desc="El GalaxyX es un smartphone de gama media-alta con pantalla AMOLED de 6.5 pulgadas Full HD+ (90Hz refresh rate) para una experiencia visual fluida. Procesador Octa-core 2.4GHz, 6GB RAM para multitarea sin lags. Almacenamiento de 128GB expandible vía microSD. Cámara triple: principal 48MP con IA para fotos nocturnas, ultra gran angular 12MP y macro 5MP; frontal 16MP para selfies. Batería 5000mAh con carga rápida 25W. Sistema Android 14 con actualizaciones por 3 años. Colores: negro, plata. Incluye funda protectora.">
+            Saber más</button>
+        </div>
+
+        <!-- Producto 5: Libro 2 -->
+        <div class="product-card">
+            <img src="https://via.placeholder.com/250x200?text=Libro+de+Historia" alt="Libro de Historia">
+            <h3>Libro de Historia Antigua</h3>
+            <p>Explora civilizaciones perdidas.</p>
+            <div class="price">$15.99</div>
+            <button class="saber-mas" 
+                    data-title="Historia Antigua: Imperios Olvidados"
+                    data-desc="En 'Imperios Olvidados', el historiador Elena Vargas desentraña los misterios de civilizaciones como los sumerios, mayas y egipcios antiguos. Con más de 300 páginas llenas de mapas detallados, fotografías de excavaciones y análisis basados en descubrimientos recientes (incluyendo hallazgos de 2023 en Mesoamérica). Explora temas como el comercio, la religión y el colapso de estas sociedades. Ideal para estudiantes y aficionados a la arqueología. Incluye bibliografía actualizada y glosario. Edición en tapa dura, 2024.">
+            Saber más</button>
+        </div>
+
+        <!-- Producto 6: Reloj -->
+        <div class="product-card">
+            <img src="https://via.placeholder.com/250x200?text=Reloj+Smart" alt="Reloj Inteligente">
+            <h3>Reloj Inteligente</h3>
+            <p>Monitorea tu salud y fitness.</p>
+            <div class="price">$89.99</div>
+            <button class="saber-mas" 
+                    data-title="Reloj Inteligente HealthTrack"
+                    data-desc="El HealthTrack es un smartwatch versátil con pantalla táctil OLED de 1.4 pulgadas siempre encendida. Monitorea ritmo cardíaco 24/7, oxígeno en sangre (SpO2), sueño profundo y más de 100 modos deportivos (correr, natación, ciclismo). Batería de 7-10 días, resistente al agua 5 ATM. Notificaciones de llamadas, mensajes y apps compatibles con iOS/Android. Correa de silicona ajustable, colores: negro y rosa. Incluye app gratuita para sincronización y análisis de datos. Garantía de 2 años.">
+            Saber más</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalPrice" class="price"></div>
+            <p id="modalDesc"></p>
+            <a href="https://wa.me/573172792295?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="whatsapp-btn">Contactar por WhatsApp</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mi Tienda Online. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('productModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalPrice = document.getElementById('modalPrice');
+        const closeBtn = document.getElementsByClassName('close')[0];
+
+        // Open modal on button click
+        document.querySelectorAll('.saber-mas').forEach(button => {
+            button.addEventListener('click', () => {
+                modalTitle.textContent = button.getAttribute('data-title');
+                modalDesc.textContent = button.getAttribute('data-desc');
+                modalPrice.textContent = button.parentElement.querySelector('.price').textContent;
+                modal.style.display = 'block';
+            });
+        });
+
+        // Close modal
+        closeBtn.onclick = () => {
+            modal.style.display = 'none';
+        };
+
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
